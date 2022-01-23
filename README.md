@@ -14,6 +14,6 @@ A Simple URL Shortener App using Laravel 8.
 ## Installation
 - Clone the porject.
 - Set the configuration (.env) and make sure to generate new App key using: '''php artisan key:generate'''
-- '''composer install''' to install all the required packages.
+- sh ```composer install```to install all the required packages.
 - Migrate Database
 - Run the project ^__^
