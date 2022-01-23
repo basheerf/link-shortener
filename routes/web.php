@@ -18,12 +18,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-Route::get('links',[ShortenerController::class,'index'])->name('links.index');
-Route::post('generate',[ShortenerController::class,'store'])->name('generate.store');
-Route::get('{shortlink}',[ShortenerController::class,'short'])->name('shortlink.short');
+Route::middleware('auth')->group(function()
+{
+    Route::get('links',[ShortenerController::class,'index'])->name('links.index');
+    Route::post('generate',[ShortenerController::class,'store'])->name('generate.store');
+});
 
 
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('{shortlink}',[ShortenerController::class,'short'])->name('shortlink.short');

@@ -34,6 +34,12 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
+                @if(auth()->check())
+            
+                <a class="navbar-brand" href="{{ route('links.index') }}">
+                    My Links
+                  </a>
+                @endif
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">

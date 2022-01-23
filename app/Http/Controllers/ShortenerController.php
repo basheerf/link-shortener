@@ -15,9 +15,12 @@ class ShortenerController extends Controller
      */
     public function index()
     {
-        $shortenLinks=Shortener::latest()->simplePaginate(10);
+    
+        $shortenLinks=Shortener::latest()->where('user_id',auth()->id())
+                                          ->simplePaginate(10);
+                                          
+         return view('links.index',compact('shortenLinks'));
 
-        return view('links.index',compact('shortenLinks'));
     }
 
     public function store(Request $request)
@@ -28,19 +31,16 @@ class ShortenerController extends Controller
 
         $data['link']=$request->link;
         $data['shortlink']=Str::random(4);
-
+        $data['user_id']= auth()->id();
         Shortener::create($data);
-
         return redirect()->route('links.index')->with('msg','Link Generated');
     }
 
     public function short($shortlink)
-    {
-
+    { 
         $link=Shortener::where('shortlink',$shortlink)->first();
         return redirect($link->link);
-
-
     }
+
 
 }

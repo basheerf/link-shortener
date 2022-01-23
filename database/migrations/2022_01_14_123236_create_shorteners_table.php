@@ -17,6 +17,7 @@ class CreateShortenersTable extends Migration
             $table->id();
             $table->string('link');
             $table->string('shortlink');
+            $table->foreignId('user_id')->constrained('users')->nullable();
             $table->timestamps();
         });
     }

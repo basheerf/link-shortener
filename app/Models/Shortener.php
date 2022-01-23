@@ -9,5 +9,10 @@ class Shortener extends Model
 {
     use HasFactory;
 
-    protected $fillable=['link','shortlink'];
+    protected $fillable=['link','shortlink','user_id'];
+
+    public function users()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
 }
